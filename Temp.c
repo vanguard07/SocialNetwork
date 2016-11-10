@@ -1,18 +1,18 @@
 #include<stdio.h>
 #include<string.h>
-struct User 
+struct User
 	{
 		char name[20];
 		char username[20];
 		char password[20];
 	};
-	
+
 void Read(char filenamefrommsg[40])
 {
     int c;
 	FILE *file;
 	file = fopen(filenamefrommsg, "r");
-	if (file!=NULL) 
+	if (file!=NULL)
 		{
     		while ((c = getc(file)) != EOF)
         		putchar(c);
@@ -24,9 +24,9 @@ void ExchangeMessage(char filename[40], char namefromlogin[20])
 {
 	char msg[20];
 	FILE *temp;
-	if((temp=fopen(filename, "a+"))==NULL)
+	if((temp=fopen(filename, "a"))==NULL)
 	printf("File not open?");
-	else 
+	else
 		{
 		printf("Enter EOF to quit.\n");
 		fflush(stdin);
@@ -40,8 +40,9 @@ void ExchangeMessage(char filename[40], char namefromlogin[20])
 			gets(msg);
 		}
 		}
-		Read(filename);
 		fclose(temp);
+		Read(filename);
+
 }
 
 void MakeFile(char namefromsearch[20], char namefromlogin[20])
@@ -53,7 +54,7 @@ void MakeFile(char namefromsearch[20], char namefromlogin[20])
 			strcat(filename, namefromlogin);
 			char *N=strcat(filename, ".txt");
 		}
-		else 
+		else
 		{
 			strcpy(filename, namefromlogin);
 			strcat(filename, namefromsearch);
@@ -75,7 +76,7 @@ void Search(char namefromlogin[20])
 	   	printf("File not opened.\n");
 	else
 	{
-		while (!feof(fp)) 
+		while (!feof(fp))
 	    {
 	      	fscanf(fp,"%s", U.name);
 	      	//fread( &U, sizeof(struct User), 1, fp);
@@ -92,8 +93,8 @@ void Search(char namefromlogin[20])
 			}
        	  	}
        }
-		fclose(fp);  	         	
-	}		
+		fclose(fp);
+	}
 }
 
 void NewLogin()
@@ -131,7 +132,7 @@ int ReadUser(char *user, char *pass)
 	{
 		while(!feof(readptr))
 			{
-				fscanf(readptr,"%s %s", U1.username, U1.password);
+				fscanf(readptr,"%s %s %s",U1.name, U1.username, U1.password);
 				if(strcmp(U1.username, user)==0 && strcmp(U1.password, pass)==0)
 					check=1;
 			}
@@ -142,7 +143,7 @@ int ReadUser(char *user, char *pass)
 			}
 			else
 			{
-			printf("Try again!\n");	
+			printf("Try again!\n");
 			return 0;
 			}
 	}
@@ -154,7 +155,7 @@ int main()
 		char username[20], password[20];
 		int x, n, a;
 		struct User U;
-		printf("1.New User\n2.Existing user\nEnter choice: ");	
+		printf("1.New User\n2.Existing user\nEnter choice: ");
 		scanf("%d", &a);
 		fflush(stdin);
 		system("cls");
@@ -180,6 +181,6 @@ int main()
 					Search(username);
 				}
 				}
-		return 0;	
+		return 0;
 		}
 }
