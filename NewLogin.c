@@ -20,5 +20,6 @@ void NewLogin()
 	scanf("%d", &n);
 	if(n==1)
 	Search(U1.username);
+	
 }
 
