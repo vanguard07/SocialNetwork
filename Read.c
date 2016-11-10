@@ -1,8 +1,8 @@
-void Read(const char* filename)
+void Read(char filenamefrommsg[40])
 {
     int c;
 	FILE *file;
-	file = fopen(filename, "r");
+	file = fopen(filenamefrommsg, "r");
 	if (file!=NULL) 
 		{
     		while ((c = getc(file)) != EOF)
@@ -10,4 +10,3 @@ void Read(const char* filename)
     			fclose(file);
 		}
 }
-
