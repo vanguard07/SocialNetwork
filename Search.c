@@ -1,34 +1,34 @@
 void Search(char namefromlogin[20])
 {
-	char name[30];
-	printf("Search any name. \n");
+	char name[30], X[30], temp[30];
+		strcpy(temp, namefromlogin);
+	char *filename=strcat(temp, ".txt");
+	printf("Search any username. \n");
 		scanf("%s",name);
 	struct User U;
 	int c,check;
     FILE *fp;
-	fp = fopen("Admin.txt","r");
+	fp = fopen(filename,"r");
 	if (fp==NULL)
 	   	printf("File not opened.\n");
 	else
 	{
-		while (!feof(fp)) 
+	    check=0;
+		while (!feof(fp))
 	    {
-	      	fscanf(fp,"%s", U.name);
-	      	//fread( &U, sizeof(struct User), 1, fp);
-	        check=strcmpi(name, U.name);
-	        if (check==0)
-	        {
-			printf("%s exist.\n", U.name);
-			printf("Add as friend? ");
-			scanf("%d", &c);
-			if(c==1)
-			{
-			fscanf(fp,"%s", U.username);
-			MakeFile(U.username, namefromlogin);
-			}
-       	  	}
-       }
-		fclose(fp);  	         	
-	}		
-}
+	      	fscanf(fp,"%s", X);
 
+	      	//fread( &U, sizeof(struct User), 1, fp);
+	        if (strcmpi(name, X)==0)
+	        {
+				printf("%s exist.\n", X);
+				printf("Send Message?\n1.Yes\n2.No\n ");
+				scanf("%d", &c);
+			if(c==1)
+				MakeFile(X, namefromlogin);
+				break;
+            }
+       }
+		fclose(fp);
+	}
+}
