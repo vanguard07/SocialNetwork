@@ -31,7 +31,7 @@ void Add(char namefromlogin[20])
 			fclose(temp);
 			}
        	  	}
-       }
+       		}
 		fclose(fp);  	         	
 	}		
 }
