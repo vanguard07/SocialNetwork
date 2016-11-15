@@ -1,13 +1,18 @@
 void ExchangeMessage(char filename[40], char namefromlogin[20])
+   //For exchanging of messages between two users
 {
-	char msg[20];
+	system("COLOR 0E");
+	char msg[200];
 	FILE *temp;
+	char ch;
 	if((temp=fopen(filename, "a+"))==NULL)
 	printf("File not open?");
-	else 
+	else
 		{
 		printf("Enter EOF to quit.\n");
 		fflush(stdin);
+		system("cls");
+		Read(filename);
 		printf("Type message: ");
 		gets(msg);
 		while(!feof(stdin))
@@ -18,6 +23,15 @@ void ExchangeMessage(char filename[40], char namefromlogin[20])
 			gets(msg);
 		}
 		}
-		Read(filename);
 		fclose(temp);
+		system("cls");
+		Read(filename);
+		printf("Press q to quit. ");
+		scanf("%c",&ch);
+		if (ch=='q')
+			 {
+			 	system("cls");
+			 	Exist(namefromlogin);
+			 }
+
 }
